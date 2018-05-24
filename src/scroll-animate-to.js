@@ -99,10 +99,10 @@ class ScrollTo {
     let from = this.container === window ? window.pageYOffset : this.container.scrollTop
     let to = this.yDistance
     let xAxis = this.container === window ? window.pageXOffset : this.container.scrollLeft
-
+    if (parseInt(to) === 0) return
     let loop = () => {
       let start = this.startTime
-      let val = this.animation(start, from, to - from, duration)
+      let val = this.animation(start, from, to, duration)
       this.startTime ++
       if (start <= duration){
         this.container.scroll(xAxis, val)
@@ -125,10 +125,10 @@ class ScrollTo {
     let from = this.container === window ? window.pageXOffset : this.container.scrollLeft
     let to = this.xDistance
     let yAxis = this.container === window ? window.pageYOffset : this.container.scrollTop
-
+    if (parseInt(to) === 0) return
     let loop = () => {
       let start = this.startTime
-      let val = this.animation(start, from, to - from, duration)
+      let val = this.animation(start, from, to, duration)
       this.startTime ++
       if (start <= duration){
         this.container.scroll(val, yAxis)

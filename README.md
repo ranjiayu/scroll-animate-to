@@ -2,7 +2,7 @@
 
 A light Javascript library to scroll to the position of element.
 
-[DEMO](http://www.baidu.com)
+[DEMO](https://ranjiayu.github.io/scroll-animate-to-demo/)
 
 ## Install
 
@@ -28,7 +28,7 @@ Or
 <script src="/path/to/scroll-animate-to.min.js"></script>
 ```
 
-More detail see [DEMO](http://www.baidu.com)
+More detail see [DEMO](https://ranjiayu.github.io/scroll-animate-to-demo/)
 
 
 ## API

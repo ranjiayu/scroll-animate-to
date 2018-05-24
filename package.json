@@ -1,6 +1,6 @@
 {
   "name": "scroll-animate-to",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A light javascript library about scroll.",
   "main": "./lib/scroll-animate-to.min.js",
   "scripts": {
