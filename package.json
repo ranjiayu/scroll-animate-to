@@ -1,0 +1,24 @@
+{
+  "name": "scroll-animate-to",
+  "version": "1.0.0",
+  "description": "A light javascript library about scroll.",
+  "main": "./lib/scroll-animate-to.min.js",
+  "scripts": {
+    "build": "webpack-cli"
+  },
+  "keywords": [
+    "scroll",
+    "javascript"
+  ],
+  "author": "ranjiayu",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "babel-loader": "^8.0.0-beta.0",
+    "mocha": "^5.2.0",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.8.3",
+    "webpack-cli": "^2.1.3"
+  }
+}

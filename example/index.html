@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>scroll-animate-to DEMO</title>
+    <style type="text/css">
+        #div {
+            background-color:#00FFFF;
+            width:500px;
+            height:500px;
+            overflow: scroll;
+        }
+        #div1{
+            background: red;
+            width: 100px;
+            height: 100px;
+            margin-left: 600px;
+            margin-right: 600px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="test3()">Move 3</button>
+    <p id="top">如果元素中的内容超出了给定的宽度和高度属性，overflow 属性可以确定是否显示滚动条等行为。</p>
+    <div id="div">
+        <button id="button-inner">Move to Top</button>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p id="ele1">123</p>
+        这个属性定义溢出元素内容区的内容会如何处理。如果值为 scroll，不论是否需要，用户代理都会提供一种滚动机制。因此，有可能即使元素框中可以放下所有内容也会出现滚动条。默认值是 visible。
+        <p>1asdasdasdasdaasdasdasdddsdasd23</p>
+        <div id="div1"></div>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        <p>123</p>
+        
+        
+    </div>
+    <p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p>
+    <p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p id="p1" style="color:red;">asd</p><p>asd</p><p>asd</p><p>asd</p>
+    <p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p>
+    <p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p>
+    <p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p><p>asd</p>
+    <button id="button">Move to Top</button>
+</body>
+<script src="../lib/scroll-animate-to.min.js"></script>
+<script>
+    var container = document.getElementById('div')
+    var e = document.getElementById('ele1')
+    var p1 = document.getElementById('p1')
+
+
+    var m = new ScrollTo({
+        container: container,
+        target: e,
+        callback: function(){
+            console.log('y1')
+        }
+    })
+
+    var m1 = new ScrollTo({
+        target: p1,
+        duration: 2500,
+        animationFn: 'easeIn',
+        callback: function(){
+            console.log('y2')
+        }
+    })
+
+    var m2 = new ScrollTo({
+        target: document.getElementById('div1'),
+        container: container,
+        axis: 'x',
+        callback: function(){
+            console.log('x1')
+        }
+    })
+
+    function test(){
+        m.scroll()
+    }
+
+    function test1(){
+        m1.scroll()
+    }
+    
+    function test2(){
+        m2.scroll()
+    }
+
+    function test3(){
+        m.scroll()
+        m2.scroll()
+        m1.scroll()
+    }
+
+
+</script>
+</html>
