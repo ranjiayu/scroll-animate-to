@@ -1,6 +1,6 @@
 {
   "name": "scroll-animate-to",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A light javascript library about scroll.",
   "main": "./lib/scroll-animate-to.min.js",
   "scripts": {
@@ -8,7 +8,12 @@
   },
   "keywords": [
     "scroll",
-    "javascript"
+    "javascript",
+    "animate",
+    "move",
+    "axis",
+    "scroll-to",
+    "move-to"
   ],
   "author": "ranjiayu",
   "license": "MIT",

@@ -2,7 +2,9 @@ const path = require('path')
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = {
-  entry: './src/scroll-animate-to.js',
+  entry: [
+    './src/scroll-animate-to.js'
+  ],
   output: {
     path: path.resolve(__dirname, 'lib'),
     filename: 'scroll-animate-to.min.js',
