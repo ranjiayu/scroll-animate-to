@@ -57,6 +57,10 @@ class ScrollTo {
     this.getDistance()
   }
 
+  isEdge(){
+    return navigator.userAgent.indexOf('Edge') !== -1
+  }
+
   // calculate how many px to be scrolled
   getDistance(){
     let e = this.target
@@ -105,7 +109,11 @@ class ScrollTo {
       let val = this.animation(start, from, to, duration)
       this.startTime ++
       if (start <= duration){
-        this.container.scroll(xAxis, val)
+        if (!this.isEdge()){
+          this.container.scroll(xAxis, val)
+        }else{
+          this.container.scrollTop = val
+        }
         window.requestAnimationFrame(loop)
       }else{
         this.callback()
@@ -131,7 +139,12 @@ class ScrollTo {
       let val = this.animation(start, from, to, duration)
       this.startTime ++
       if (start <= duration){
-        this.container.scroll(val, yAxis)
+        if (!this.isEdge()){
+          this.container.scroll(val, yAxis)
+        }else{
+          this.container.scrollLeft = val
+        }
+        
         window.requestAnimationFrame(loop)
       }else{
         this.callback()
