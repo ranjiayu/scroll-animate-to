@@ -15,14 +15,18 @@ class ScrollTo {
    * @param {Function|string}  option.animationFn  default to "easeIn".You can choose "easeOut","easeInOut","linear"
    * @param {Function}         option.callback     callback function
    * @param {number}           option.duration     the scroll cost time, default 1000(ms)
+   * @param {number}           option.offsetX      scroll offset from X axis
+   * @param {number}           option.offsetY      scroll offset from Y axis
    * @param {string}           option.axis         "axis" would be "x" or "y". Default is "y"
   */
   constructor(options){
-    let { container = window, target, animationFn, duration=1000, callback = ()=>{}, axis='y' } = options
+    let { container = window, target, animationFn, duration=1000, offsetX=0, offsetY=0, callback = ()=>{}, axis='y' } = options
     this.container = container
     this.target = target
     this.animation = null
     this.duration = Math.ceil(duration / 17)
+    this.offsetX = offsetX
+    this.offsetY = offsetY
     this.callback = callback
     this.axis = axis
 
@@ -68,11 +72,11 @@ class ScrollTo {
     let { left: selfLeftOffset, top: selfTopOffset } = eMeta
     if (container !== window){
       let { left: parentLeftOffset, top: parentTopOffset } = container.getBoundingClientRect()
-      this.yDistance = selfTopOffset - parentTopOffset
-      this.xDistance = selfLeftOffset - parentLeftOffset
+      this.yDistance = selfTopOffset - parentTopOffset + this.offsetY
+      this.xDistance = selfLeftOffset - parentLeftOffset + this.offsetX
     }else{
-      this.yDistance = selfTopOffset
-      this.xDistance = selfLeftOffset
+      this.yDistance = selfTopOffset + this.offsetY
+      this.xDistance = selfLeftOffset + this.offsetX
     }
   }
 
