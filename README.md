@@ -41,6 +41,8 @@ new ScrollTo(option)
 * @param {Function|string}  option.animationFn  "easeIn", "easeOut", "easeInOut", "linear". Default is "easeIn". And you can custom the function.
 * @param {Function}         option.callback     callback function
 * @param {number}           option.duration     the scroll cost time, default 1000(ms)
+* @param {number}           option.offsetX      scroll offset from X axis
+* @param {number}           option.offsetY      scroll offset from Y axis
 * @param {string}           option.axis         "axis" would be "x" or "y". Default is "y"
 
 ## License
