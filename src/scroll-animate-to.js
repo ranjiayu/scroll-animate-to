@@ -1,7 +1,7 @@
 
 window._scrollLock = false
 window._scrollTasks = []
-if (!window.requestAnimationFrame){
+if (!window.requestAnimationFrame) {
   window.requestAnimationFrame = (fn) => {
     return setTimeout(fn, 17)
   }
@@ -34,31 +34,31 @@ class ScrollTo {
     this.xDistance = 0
     this.ua = navigator.userAgent
     this.isEdge = this.ua.indexOf('Edge') !== -1
-    this.isIE = (document.documentMode || +(navigator.userAgent.match(/MSIE (\d+)/) && RegExp.$1)) !== 0
+    this.isIE = (document.documentMode || + (navigator.userAgent.match(/MSIE (\d+)/) && RegExp.$1)) !== 0
 
     this.startTime = 0
     this.animationFns = {
-      linear(t, b, c, d){
+      linear(t, b, c, d) {
         return c * t / d + b
       },
-      easeIn(t, b, c, d){
+      easeIn(t, b, c, d) {
         return c * (t /= d) * t + b
       },
-      easeOut(t, b, c, d){
-        return -c *(t /= d)*(t-2) + b
+      easeOut(t, b, c, d) {
+        return -c *(t /= d) * (t - 2) + b
       },
-      easeInOut(t, b, c, d){
+      easeInOut(t, b, c, d) {
         if ((t /= d / 2) < 1) return c / 2 * t * t + b
-        return -c / 2 * ((--t) * (t-2) - 1) + b
+        return -c / 2 * ((--t) * (t - 2) - 1) + b
       }
     }
-    if (typeof animationFn === 'string'){
-      if (animationFn in this.animationFns){
+    if (typeof animationFn === 'string') {
+      if (animationFn in this.animationFns) {
         this.animation = this.animationFns[animationFn]
       }
-    }else if (typeof animationFn == 'function'){
+    } else if (typeof animationFn == 'function') {
       this.animation = animationFn
-    }else{
+    } else {
       this.animation = this.animationFns.easeIn
     }
     this.getDistance()
@@ -70,11 +70,11 @@ class ScrollTo {
     let container = this.container
     let eMeta = e.getBoundingClientRect()
     let { left: selfLeftOffset, top: selfTopOffset } = eMeta
-    if (container !== window){
+    if (container !== window) {
       let { left: parentLeftOffset, top: parentTopOffset } = container.getBoundingClientRect()
       this.yDistance = selfTopOffset - parentTopOffset + this.offsetY
       this.xDistance = selfLeftOffset - parentLeftOffset + this.offsetX
-    }else{
+    } else {
       this.yDistance = selfTopOffset + this.offsetY
       this.xDistance = selfLeftOffset + this.offsetX
     }
@@ -84,14 +84,14 @@ class ScrollTo {
   To prevent multiple scroll task run at the same time,
   when window._scrollLock is true, other tasks will wait.
   */
-  scroll(){
+  scroll() {
     let axis = this.axis
     this.startTime = 0
-    if (window._scrollLock === false && window._scrollTasks.length === 0){
+    if (window._scrollLock === false && window._scrollTasks.length === 0) {
       window._scrollLock = true
-      if (axis === 'y'){
+      if (axis === 'y') {
         this.yAxisScroll()
-      }else if(axis === 'x'){
+      }else if(axis === 'x') {
         this.xAxisScroll()
       }
     }else{
@@ -100,7 +100,7 @@ class ScrollTo {
     }
   }
 
-  yAxisScroll(){
+  yAxisScroll() {
     let nextTask = null
     let duration = this.duration
     let from = this.container === window ? window.pageYOffset : this.container.scrollTop
@@ -111,18 +111,18 @@ class ScrollTo {
       let start = this.startTime
       let val = this.animation(start, from, to, duration)
       this.startTime ++
-      if (start <= duration){
-        if (this.container === window){
+      if (start <= duration) {
+        if (this.container === window) {
           this.container.scroll(xAxis, val)
-        }else{
+        } else {
           if (!this.isEdge && !this.isIE) {
             this.container.scroll(xAxis, val)
-          }else{
+          } else {
             this.container.scrollTop = val
           }
         }
         window.requestAnimationFrame(loop)
-      }else{
+      } else {
         this.callback()
         window._scrollLock = false
         nextTask = window._scrollTasks.length >= 1 ? window._scrollTasks.shift(): null
@@ -134,7 +134,7 @@ class ScrollTo {
     window.requestAnimationFrame(loop)
   }
 
-  xAxisScroll(){
+  xAxisScroll() {
     let nextTask = null
     let duration = this.duration
     let from = this.container === window ? window.pageXOffset : this.container.scrollLeft
@@ -145,21 +145,21 @@ class ScrollTo {
       let start = this.startTime
       let val = this.animation(start, from, to, duration)
       this.startTime ++
-      if (start <= duration){
-        if (this.container === window){
+      if (start <= duration) {
+        if (this.container === window) {
           this.container.scroll(val, yAxis)
-        }else{
-          if (!this.isEdge && !this.isIE){
+        } else {
+          if (!this.isEdge && !this.isIE) {
             this.container.scroll(val, yAxis)
-          }else{
+          } else {
             this.container.scrollLeft = val
           }
         }
         window.requestAnimationFrame(loop)
-      }else{
+      } else {
         this.callback()
         window._scrollLock = false
-        nextTask = window._scrollTasks.length >= 1 ? window._scrollTasks.shift(): null
+        nextTask = window._scrollTasks.length >= 1 ? window._scrollTasks.shift() : null
       }
       if (nextTask){
         nextTask()
